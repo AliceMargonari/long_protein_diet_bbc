@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How much protein is too much? - BBC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #ffffff;
+      color: #111;
+    }
+    .logo {
+      text-align: left;
+      margin-bottom: 2px;
+    }
+    .logo img {
+      max-width: 30%;
+      height: auto;
+    }
+    h1 {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .meta {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .subhead {
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .share-link {
+      color: #326891;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="bbc-logo.png" alt="BBC">
+  </div>
+  <h1>How much protein is too much?</h1>
+<br>
+<p> <b> We’re led to believe the more protein the better when it comes to building muscle and losing weight. But are protein supplements, bars, and shakes helping or backfiring? </b> </p>
+
+<p> In the early 20th Century, Arctic explorer Vilhjalmur Stefansson spent a collective five years eating just meat. This meant that his diet consisted of around 80% fat and 20% protein. Twenty years later, he did the same as part of a year-long experiment at New York City's Bellevue Hospital in 1928. </p>
+
+<p> Stefansson wanted to disprove those who argued that humans cannot survive if they only eat meat. But unfortunately for him, in both settings he very quickly became ill when he was eating lean meats without any fat. He developed "protein poisoning", nicknamed "rabbit starvation". His symptoms disappeared after he lowered his protein intake and he raised his fat intake. In fact, after returning to New York City and to a typical US diet with more normal levels of protein, he reportedly <b> found his health deteriorating </b> and returned to a low-carb, high fat, and high protein diet until his death aged 83. </p>
+
+<p> His early experiments are some of the recorded cases of <b> high protein intake having extreme adverse effects  </b>.</p>
+
+
+
+  <br>
+  <p style="text-transform: uppercase; color: blue; margin-bottom: 30px;">
+  You may now close this tab and return to the survey  
+  </p>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const prolific_pid = params.get("prolific_pid");
+  const condition = params.get("condition");
+  const page_name = params.get("page_name");
+
+  // Replace visible URL to hide condition and page_name
+  if (prolific_pid) {
+    const cleanUrl = window.location.origin + window.location.pathname + "?prolific_pid=" + encodeURIComponent(prolific_pid);
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
+
+  const entryTime = new Date();
+
+  const entryIds = {
+    prolific_pid: "entry.434492044",
+    condition: "entry.1225575535",
+    page_name: "entry.925161350",
+    entry_time: "entry.732388184",
+    exit_time: "entry.372350073",
+    time_spent: "entry.298480214"
+  };
+
+  window.addEventListener("unload", function () {
+    const exitTime = new Date();
+    const timeSpent = Math.round((exitTime - entryTime) / 1000);
+
+    const formData = new FormData();
+    formData.append(entryIds.prolific_pid, prolific_pid);
+    formData.append(entryIds.condition, condition);
+    formData.append(entryIds.page_name, page_name);
+    formData.append(entryIds.entry_time, entryTime.toISOString());
+    formData.append(entryIds.exit_time, exitTime.toISOString());
+    formData.append(entryIds.time_spent, timeSpent);
+
+    navigator.sendBeacon(
+      "https://docs.google.com/forms/d/e/1FAIpQLSfPfKcw2oVlFINPNThg4q0FgfVdxxCCLn40vwPY6nXEH2ybeQ/formResponse",
+      new URLSearchParams(formData)
+    );
+  });
+</script>
+
+
+</body>
+</html>
